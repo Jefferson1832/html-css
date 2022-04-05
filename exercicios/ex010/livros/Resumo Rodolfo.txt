@@ -1,0 +1,263 @@
+﻿
+Resumo prova do Rodolfo!
+
+› Localidade:
+	• Temporal: Possibilidade de um programa acessar de novo a mesma palavra da memória;
+	• Espacial: Possibilidade de um programa acessar a próxima palavra da memória, ou uma outra palavra;
+
+› Mapeamento direto:
+	• Cada bloco da cache tem uma linha da memória principal definida
+	• Vantagens:
+		• Baixo custo de implementação
+		• Poucos atrazos
+	• Desvantagens:
+		• Muito miss, deixando a cache lenta
+
+› Mapeamento associativo:
+	• Um bloco da MP pode ser armazenado em qualquer linha da cache
+	• Vantagens:
+		• Pouco miss
+	• Desvantagens:
+		• Muita comparação
+		• Requer um hardware a mais só para fazer as comparações
+
+› Mapeamento associativo por conjunto:
+	• Ele divide o espaço de dados da cache em conjuntos e linhas cada. Cada conj. é tratado pelo sistema do
+	  mapeamento direto, mas dentro do conjunto, o bloco pode ser armazenado em qualquer uma das linhas do conjunto.
+	• Vantagens:
+		• Poucos miss
+		• Menos comparação
+	• Desvantagens:
+		• Mais complexo
+
+› Políticas de Substituição (mapeamento associativo por conjunto):
+	• LRU (Least Recently Used) - Não é usado já faz um tempo
+		O sistema escolhe o bloco que está a mais tempo sem ser utilizado para substituir.		
+
+	• FIFO (First-in, first-out) - O primeiro a chegar é o primeiro a sair
+		O sistema pega o bloco que está a mais tempo na cache (chegou primeiro, sai primeiro), independe do seu uso
+
+	• LFU (Least Frequently Used) - Menos frequentemente usado, tem menos referencias à ele
+		O sistema escolhe o bloco que tem tido menos acessos do processador.				
+
+	• Random Picking - Escolha aleatória
+		Escolhe um bloco aleatório e substitui (não está nem aí)
+
+› Políticas de escrita:
+	• Write Through (Escrita em Ambas)
+		Escreve a mesma coisa na cache e na mp, e todo mundo atualiza o conteúdo para o mais recente
+
+	• Write Back (Escrita no retorno)
+		Escreve se houver uma alteração nos dados e se o bloco for substituido.
+ 
+	• Write Once (Escrita uma vez)
+		O bloco da MP será atualizado sempre que o bloco da cache foi atualizado pela primeira vez.
+
+	› Write through vs back vs once
+		• Write Through: pode haver uma grande quantidade de escritas desnecessárias na MP, com a natural redução do desempenho.
+
+		• Write Back: minimiza a desvantagem anterior, porém a MP fica potencialmente desatualizada para utilização por outros dispositivos 
+ 		  a ela ligados (E/S), isso é um problema, mas proporciona um melhor desempenho.
+
+		• Write Once: pode ser conveniente, mas apenas para sistemas com múltiplos processadores. Há questões de custo, complexidade e desempenho.
+	
+› Nívei da cache:
+	• L1 (1º Nível): sempre localizada no interior do processador
+	• L2 (2º Nível): localizada na pastilha do processador ou externa ao processador
+	• L3 (3º Nível): localizada na pastilha do processador ou externa ao processador (compartilhada)
+
+› Memórias secundárias:
+	• HD: › São constituídos de uma ou mais superfícies denominadas pratos que são circulares e finas, cobertas com uma superfície magnetizável.
+	      › Ele tem trilhas (áreas circulares concêntricas), as quais são numeradas de 0 até T-1 (endereço da trilha).
+	      › Todas as trilhas armazenam a mesma quantidade de bytes, isso é possível devido à diferença de densidade de gravação entre a trilha 
+                mais externa e a trilha mais interna.
+	      › Cada trilha possui uma grande capacidade de armazenamento em bytes, portanto, elas são divididas em partes menores, de tamanho fixo, 
+		denominadas setores, os quais servem de unidade de armazenamento (geralmente 512 bytes).
+	      › Como nas trilhas os setores são identificados por um endereço, de 0 até S-1.
+	      › Cada bit na trilha tem sua “marca” magnética, indicando, quando requerido (leitura ou escrita), se o valor do bit é 0 ou 1.
+	      › O disco completo (todos os pratos) gira constantemente em torno do seu eixo central. Sobre cada prato há um elemento mecânico, denominado 
+		braço, que transporta a cabeça de leitura/gravação, efetuando um movimento transversal sobre as trilhas.
+              › Busca: Interpretação do endereço e movimento do braço até a trilha.
+	      › Latência: Período entre a chegada da cabeça sobre a trilha a passagem do bloco (setor) desejado - 
+		Tempo médio de latência = ½ Tempo de Rotação do disco.
+	      › Tempo de interpretação: Intepretação da requisição pelo SO que passa a ordem para o controlador do disco.
+	
+	• CD: › Há três tipos de CD:
+			• ROM: É possível realizar somente a leitura dos dados;
+			• R: O usuário grava uma vez e pode ser lido várias vezes;
+			• RW: Pode ser regravado vária vezes pelo usuário;
+
+	      › O CD utiliza um sistema ótico para marcação de bits em sua superfície reprodutora
+	      › Ele possui apenas uma trilha, criada em espiral a partir de um ponto no centro do disco, o mesmo vale
+		para DVD e Blu-Ray.
+	      › No CD a velocidade de rotação é desigual, sendo mais rápido no centro do que nas bordas (para ter uma velocidade angular)
+	      › Os pits ou valas, são cavidades que um laser de alta intensidade criou no disco. Bit 1 = Vala, 0 = Espaço entre valas
+	      › Para reprodução o laser é mais fraco
+	      › No CD-RW o gravador modifica as caracteristicas das camadas, fazendo aparecer os pedaços opacos e translúcidos
+	      › CD-RW dura menos que um HD (no quesito apagar e regravar)
+
+	• DVD: › Maior espaço de armazenamento que o CD
+	       › É possível gravar os dados nas duas superfícies do disco
+               › O espaçamento entre as trilhas é menor que no CD (por isso tem mais espaço de armazenamento)
+	
+	• Blu-Ray: › Utiliza um laser azul ao invés de vermelho (CD e DVD)
+		   › Espaço entre as trilhas menor ainda, permitindo um espaço de armazenamento maior
+	
+	[*]: Há três intensidades do laser:
+		› Leitura: BAIXA
+		› Apagamento: MÉDIA
+		› Gravação: ALTA
+
+› Barramentos: 
+	• De dados: › A quantidade de linhas determina a largura do barramento
+		    › Largura determina quantidade de bits transmitidos por vez
+		    › A largura pode afetar o desempenho
+	
+	• De endereços: › Determina origem e destino dos dados do barramento
+			› Determina o máximo de memória endereçável
+ 			› Endereçam módulos de entrada e saída
+
+	• De controle: › Controla o acesso e o uso as vias de dados e endereços
+
+	• Local: › Conecta processador e memória cache
+		 › Também pode suportar controladores de dispositivos locais (E/S prog./Interrupções)
+
+	• De expansão: › Solução mais eficiente do que conectar módulos de IO no system bus
+	               › “Bufferiza” transferências de dados entre system bus e I/O controllers
+	
+	• De alta velocidade: › Ponte entre o barramento do processador
+			      › Leva dispositivos mais rápidos em uma integração mais próxima do processador
+			      › Independe do processador
+		
+
+	• Síncrono: › Controlado pelo clock
+		    › Há um ciclo de barramento = ciclo do clock
+ 		    › Intervalo de tempo para operações
+		    › Mais simples de implementar
+	
+	• Assíncrono: › Usa o protocolo handshake
+		      › Relaçoes de causa e efeito
+		      › Independe do tempo
+
+› Entrada e Saída (E/S): 
+	• Programada: 
+		› Os dados são transferidos entre o processador e o módulo de E/S	
+		› O processador executa um programa e tem controle direto da operação de E/S incluindo:
+			› A detecção do estado do dispositivo
+			› O envio de comandos de leitura ou escrita
+			› E a transferência de dados
+		› O processador envia um comando de E/S e deve esperar até que essa operação seja completada
+		› Se o processador for mais rápido que o módulo de E/S haverá um desperdício de 
+		  tempo de processamento. (Em ordens de grandezas)
+	
+		› DETALHES:
+			› CPU solicita operação de E/S
+			› Módulo de E/S realiza operação
+			› Módulo de E/S define bits de estado
+			› CPU verifica bits de estado periodicamente
+			› Módulo de E/S não informa à CPU diretamente
+			› Módulo de E/S não interrompe CPU
+			› CPU pode esperar ou voltar mais tarde
+	
+	• Controlada por interrupção:
+		› O processador envia um comando de E/S e continua a executar outras instruções, sendo interrompido
+		  pelo módulo de E/S quando este tiver completado seu trabalho
+		
+		* OBS: Tanto na E/S programada quanto na E/S dirigida por interrupção, o processador é responsável 
+		  por obter dados da memória principal (OUTPUT), e por armazenar dados na memória principal (INPUT).
+		
+		› CPU não verifica repetidamente por uma resposta do dispositivo
+		› Módulo de E/S interrompe a CPU quando ele estiver "pronto"
+		› Operação Básica: 
+			› CPU emite comando de leitura
+			› Módulo de E/S recebe dados do periférico enquanto CPU faz outro trabalho
+			› Módulo de E/S interrompe CPU
+			› CPU solicita dados
+			› Módulo de E/S transfere dados
+		› Interrupção:
+			É um mecanismo que visa, principalmente, melhorar a eficiência de processamento. Esse mecanismo 
+			permite que componentes distintos do processador (Memória, Disp. E/S) interrompam a execução 
+			de instruções do processador.
+
+	• Programada VS. Interrupção:
+		› A E/S controlada por interrupção é mais eficiente que a E/S programada, pois elimina ciclos de espera
+		  desnecessários
+		› No entanto, ela ainda consome muito tempo de processamento, pois cada palavra de dados transferida do 
+		  módulo de E/S para a memória, ou vice-versa, tem de passar pelo processador
+	
+	• Acesso direto à memória: 
+		› A transferência de dados entre o módulo de E/S e a memória principal é feita diretamente sem envolver o
+		  processador (Uso de uma controladora DMA).
+		› CPU passa endereço do módulo e quantidades de bytes e endereço de memória que armazenará os dados (Leitura/Escrita Inverso)
+		› Operação de um módulo de DMA (Direct Memory Access):
+			• CPU diz a controlador DMA: 
+				› Leitura / Escrita
+				› Endereço do dispositivo
+				› Endereço inicial do bloco de memória para transferência de dados
+				› Quantia de dados a serem transferidos
+			• CPU executa outra instrução:
+				› Provavelmente o SO indica outro processo
+			
+			• DMA realiza a transferência de E/S:
+				› Todo o bloco de dados
+			
+			• DMA envia interrupção para a CPU quando a transferência estiver finalizada
+
+› Risc x Cisc
+
+	• Risc (reduced instruction set computer):
+		› Poucas instruções de formato fixo
+		› Pipeline otimizado e muito utilizado
+		› Referência a memória apenas por Load/Store
+  		› Executado pelo hardware
+		› Utiliza muitos registradores
+		› Compilador complexo
+		› Muitas instruções com 3 operandos
+		Ex: PowerPC, ARM, SPARC.
+
+	• Cisc (complex instruction set computer):
+		› Muitas instruções de formatos variados
+		› Pipeline mais complexo e pouco utilizado
+		› Referência a memória por muitas instruçõs
+		› Instruções interpretadas pelo microprograma
+		› Complexidade no microprograma
+		› Poucos registradores
+		› Muitas instruções com dois operandos
+		Ex: Intel, AMD.
+
+
+› Taxonomia de Flynn
+
+	• Sisd(Single Instruction Single Data):
+		› Um conjunto de instruções para um conjunto de dados
+		› Segue o padrão de Von Newmann
+		› Processador mais simples e lento
+
+	• Misd(Multiple Instruction Single Data):
+		› Múltiplas instruções para manipular um conjunto único  de dados
+
+	• Simd(Single Instruction Multiple Data):
+		› Única instrução manipula vários dados
+		› Processador manipula um conjunto de dados simultaneamente
+		Ex: MMX, SSE, 3D Now
+
+	• Mimd(Multiple Instruction Multiple Data)
+		› Múltiplas instruções manipulam múltiplos dados diferentes
+		› Categoria mais avançada tecnologicamente
+		› Elevado desempenho do sistema
+
+
+› Superescalar e Superpipeline
+	• Superescalar:
+		› Exige existência de um hardware
+		› Cria múltiplos pipelines separados para executar muitas instruções paralelamente
+		› Só ocorre se não houver dependência entre as instruções
+		› Pode completar mais de uma instrução por clock, uma para cada pipeline
+		› Combina antecipação de execução com otimização do compilador
+
+	• Superpipeline:
+		› Cria-se um pipeline maior com as instruções sendo divididas ao meio para gerar mais etapas e assim poder executar mais instruções
+		› Processadores MIPS adotam essa técnica
+		› Redução de tempo para realização de instruções
+		› Melhora desempenho com custo menor, comparado ao superescalar
+		› Mais estágios no pipeline acarreta o problema de dados e estrutura de controle

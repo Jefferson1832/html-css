@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        a {
+            color:  red;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: darkred;
+        }
+
+        a:hover {
+            color: beige;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: yellow
+        }
+
+        a::after {
+            content: ' [link]';
+            text-decoration: none;
+            font-weight: normal;
+            color: darkgray;
+        }
+
+        .escondido > p {
+            display: none;
+        }
+
+        .escondido:hover > p {
+            display: block;
+        }
+    </style>
+</head> 
+<body>
+    <h1>Personalizando LINKS</h1>
+    <ul>
+        <li><a href="#">Repositorio github</a></li>
+        <div class="escondido">
+            <li><a href="#">Canal do YT</a></li>
+            <p>www.yt.com.br</p>
+        </div>
+        <li><a href="#">Site Curso em VIDEO</a></li>
+    </ul>
+</body>
+</html>
